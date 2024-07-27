@@ -15,7 +15,7 @@ const { getDoujinshiDetails, searchDoujinshis } = require("./nhentai");
 
 async function main() {
   // Get details of a specific doujinshi
-  const doujinshiId = 111111;
+  const doujinshiId = 473546;
   const details = await getDoujinshiDetails(doujinshiId);
   console.log(details);
 
