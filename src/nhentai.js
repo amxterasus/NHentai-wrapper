@@ -27,7 +27,7 @@ async function getDoujinshiDetails(id) {
   };
 
   const categorySelectors = {
-    parodies: ".tag-container:contains('Parodies') .tags a ",
+    parodies: ".tag-container:contains('Parodies') .tags a",
     characters: ".tag-container:contains('Characters') .tags a",
     tags: ".tag-container:contains('Tags') .tags a",
     artists: ".tag-container:contains('Artists') .tags a",
@@ -64,6 +64,11 @@ async function getDoujinshiDetails(id) {
   return { id, title, categories: defaultCategories, imageUrls };
 }
 
+/**
+ * Search for doujinshis based on a query
+ * @param {string} query - The search query
+ * @returns {Promise<object[]>} - returns a list of search results
+ */
 async function searchDoujinshis(query) {
   const url = `${baseUrl}/search/?q=${encodeURIComponent(query)}`;
   const html = await fetchPage(url);
