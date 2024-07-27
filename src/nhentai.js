@@ -27,7 +27,7 @@ async function getDoujinshiDetails(id) {
   };
 
   const categorySelectors = {
-    parodies: ".tag-container:contains('Parodies') .tags a",
+    parodies: ".tag-container:contains('Parodies') .tags a ",
     characters: ".tag-container:contains('Characters') .tags a",
     tags: ".tag-container:contains('Tags') .tags a",
     artists: ".tag-container:contains('Artists') .tags a",
@@ -43,13 +43,25 @@ async function getDoujinshiDetails(id) {
     });
   }
 
+  const defaultCategories = Object.fromEntries(
+    Object.entries(categories).map(([key, value]) => [
+      key,
+      value.length > 0 ? value : ["No data avaible"],
+    ])
+  );
+
   const imageUrls = [];
   $(".gallerythumb img").each((index, element) => {
-    const imageUrl = $(element).attr("data-src");
-    if (imageUrl) imageUrls.push(imageUrl);
+    let imageUrl = $(element).attr("data-src");
+    if (imageUrl) {
+      imageUrl = imageUrl
+        .replace(/^https:\/\/t\d+\.nhentai\.net/, 'https://i.nhentai.net')
+        .replace(/t(\.(jpg|png))$/, '$1');
+      imageUrls.push(imageUrl);
+    }
   });
 
-  return { id, title, categories, imageUrls };
+  return { id, title, categories: defaultCategories, imageUrls };
 }
 
 async function searchDoujinshis(query) {
