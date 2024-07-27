@@ -11,7 +11,7 @@ npm install nhentai-wrapper
 ## Example Code
 
 ```javascript
-const { getDoujinshiDetails, searchDoujinshis } = require("./nhentai");
+const { getDoujinshiDetails, searchDoujinshis } = require("nhentai-wrapper");
 
 async function main() {
   // Get details of a specific doujinshi
